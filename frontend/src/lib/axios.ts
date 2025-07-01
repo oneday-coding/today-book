@@ -3,7 +3,8 @@ import axios from 'axios';
 // 여러 API 요청에 대해 공통 설정을 담은 인스턴스를 생성하는 함수.
 const instance = axios.create({
   // 모든 요청 URL 앞에 붙는 기본 주소. .env에서 VITE_API_URL 값을 가져오고, 없으면 http://localhost:3000을 기본으로 사용.
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  // baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  baseURL: 'http://localhost:3000',
   // 요청 시 쿠키, 인증정보(세션) 를 포함시켜 백엔드에 전달하도록 설정.
   withCredentials: true,
 });

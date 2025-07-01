@@ -23,6 +23,17 @@
 }
 
 @layer components {
+  .layout-header {
+    @apply shrink-0 py-[12px] px-[16px] h-[64px] shadow-sm flex items-center gap-[8px];
+  }
+
+  .layout-main {
+    @apply flex-1 overflow-y-auto p-[16px];
+  }
+
+  .layout-header-left {
+    @apply flex items-center;
+  }
   .book-title {
     @apply text-sm text-textPrimary mb-1 line-clamp-3 leading-[1.2];
   }

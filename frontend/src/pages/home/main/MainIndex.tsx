@@ -2,7 +2,7 @@ import SectionIndex from './Section/SectionIndex';
 
 export default function MainIndex() {
   return (
-    <main className="flex-1 overflow-y-auto p-[16px]">
+    <main className="layout-main">
       <SectionIndex
         listType={1}
         title={'today'}
@@ -19,7 +19,7 @@ export default function MainIndex() {
         LIMIT={10}
       />
 
-      <SectionIndex listType={3} title={'베스트셀러'} moreBtnFlag={true} LIMIT={3} />
+      <SectionIndex listType={3} title={'best'} moreBtnFlag={true} LIMIT={3} />
     </main>
   );
 }

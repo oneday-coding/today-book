@@ -3,7 +3,8 @@
 import SectionList from './Best';
 import SectionSwiperToday from './SwiperToday';
 import SectionSwiperNew from './SwiperNew';
-import MoreButton from '../../../../components/moreBtn';
+import MoreButton from '../../../../components/MoreBtn';
+import { bookTypeMap, type BookType } from '../../../../models/bookType.model';
 
 interface propsHomeSection {
   listType: number;
@@ -39,7 +40,7 @@ export default function HomeSection(props: propsHomeSection) {
   return (
     <section>
       <div className="pt-[32px] pb-[16px] flex justify-between items-center">
-        <h2 className="section-title">{title}</h2>
+        <h2 className="section-title">{bookTypeMap[title as BookType] ?? title}</h2>
         {moreBtnFlag && (
           <MoreButton title={title} />
         )}

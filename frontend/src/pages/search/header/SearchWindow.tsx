@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useRecentSearchStore } from '../../../store/recentSearchStore';
-import useBookSearch from '../../../hooks/useBookSearch';
+import { useRecentSearchStore } from '../../../store/useRecentSearchStore';
+import useBookSearch from '../../../hooks/useBookSearch_old';
 
 export default function SearchWindow() {
   const addSearchKeyword = useRecentSearchStore((state) => state.addSearchKeyword);

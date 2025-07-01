@@ -6,6 +6,7 @@ import FavoritesIndex from '../pages/favorites/FavoritesIndex';
 import SearchIndex from '../pages/search/SearchIndex';
 import DetailIndex from '../pages/detail/DetailIndex';
 import ListIndex from '../pages/list/ListIndex';
+import LoginIndex from '../pages/login/LoginIndex';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: 'detail/:isbn13', element: <DetailIndex /> },
       { path: 'list/:bookType', element: <ListIndex /> },
       { path: 'search', element: <SearchIndex /> },
+      { path: 'login', element: <LoginIndex /> },
       { path: 'favorites', element: <FavoritesIndex /> },
       { path: 'my', element: <MyIndex /> },
     ],

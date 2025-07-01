@@ -2,7 +2,7 @@ import BackButton from '../../../components/BackBtn';
 
 export default function HeaderIndex() {
   return (
-    <header className="shirink-0 py-[12px] px-[16px] h-[64px] shadow-sm flex items-center gap-[8px]">
+    <header className="layout-header">
       <BackButton />
       <h1 className="flex-1 flex justify-center">도서 상세</h1>
       <button

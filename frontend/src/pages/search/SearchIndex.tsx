@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRecentSearchStore } from '../../store/recentSearchStore';
+import { useRecentSearchStore } from '../../store/useRecentSearchStore';
 import HeaderIndex from './header/HeaderIndex';
 import MainIndex from './main/MainIndex';
 

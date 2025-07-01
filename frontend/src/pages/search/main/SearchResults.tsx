@@ -1,17 +1,18 @@
-import { useResultSearchStore } from '../../../store/resultSearchStore';
+import type { InfiniteData } from '@tanstack/react-query';
 import Loading from '../../../components/Loading';
+import NoMoreBooks from '../../../components/NoMoreBooks';
+import useBookSearch from '../../../hooks/useBookSearch';
+import type { Book } from '../../../models/book.model';
 import InfiniteBookList from './InfiniteBooklist';
-// import { useEffect } from 'react';
+import { useResultSearchStore } from '../../../store/useResultSearchStore';
 
 export default function SearchResults() {
-  const { searchResults, isLoading, searchQuery } = useResultSearchStore();
+  const searchQuery = useResultSearchStore((state) => state.searchQuery);
+  const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useBookSearch(searchQuery, 10);
 
-  // // 검색어가 바뀌면 초기화
-  // useEffect(() => {
-    // clearResults();
-  // }, [searchQuery]);
+  const allBooks = (data as InfiniteData<Book[]>)?.pages?.flat() ?? [];
 
-  // 검색어가 없을 때 (초기 상태)
   if (!searchQuery) {
     return (
       <div className="text-center py-8 text-gray-500">
@@ -19,27 +20,32 @@ export default function SearchResults() {
       </div>
     );
   }
-  
-  // 로딩 중일 때 (초기 로딩)
-  if (isLoading && searchResults.length === 0) return <Loading />;
 
-  // 검색 결과가 없을 때 (로딩 끝나고도 결과가 없음음)
-  if (!isLoading && searchResults.length === 0) {
-    const noResultMessage = `${searchQuery}에 대한 검색 결과가 없습니다.`;
+  if (isLoading) return <Loading />;
+  if (isError) return <div>에러가 발생하였습니다.</div>;
+
+  if (!isLoading && allBooks.length === 0) {
     return (
       <div className="text-center py-8">
         <h2 className="section-title mb-4">검색 결과</h2>
-        <p className="text-gray-500">{noResultMessage}</p>
+        <p className="text-gray-500">{searchQuery}에 대한 검색 결과가 없습니다.</p>
       </div>
     );
   }
 
-  // 검색 결과가 있을 때
-  const resultTitle = `${searchQuery} 검색 결과 (${searchResults.length}건)`;
   return (
     <div>
-      <h2 className="section-title mb-4">{resultTitle}</h2>
-      <InfiniteBookList />
+      <h2 className="section-title mb-4">
+        {searchQuery} 검색 결과 ({allBooks.length}건)
+      </h2>
+      <InfiniteBookList
+        books={allBooks}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+      />
+      {!hasNextPage && <NoMoreBooks />}
+      {isFetchingNextPage && <Loading />}
     </div>
   );
 }

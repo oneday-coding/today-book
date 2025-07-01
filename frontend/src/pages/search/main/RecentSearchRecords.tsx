@@ -1,8 +1,8 @@
-import { useRecentSearchStore } from '../../../store/recentSearchStore';
-import useBookSearch from '../../../hooks/useBookSearch';
+import { useRecentSearchStore } from '../../../store/useRecentSearchStore';
+import useBookSearch from '../../../hooks/useBookSearch_old';
 
 export default function SearchResults() {
-  const {recentSearches, clearAllStorage,removeOneStorage }  = useRecentSearchStore();
+  const { recentSearches, clearAllStorage, removeOneStorage } = useRecentSearchStore();
   const { searchBooks } = useBookSearch();
 
   return (
@@ -24,7 +24,9 @@ export default function SearchResults() {
           <div
             key={index}
             className="rounded-full  inline-flex items-center py-[6px] px-[12px] bg-mainGray text-[14px]"
-            onClick={()=>{ searchBooks(keyword); }}
+            onClick={() => {
+              searchBooks(keyword);
+            }}
           >
             {keyword}
             <button

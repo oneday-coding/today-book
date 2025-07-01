@@ -21,32 +21,32 @@ module.exports = {
       },
       spacing: {
         // 공통 간격 값들 (rem 단위)
-        'xs': '0.5rem',    // 8px
-        'sm': '0.75rem',   // 12px
-        'md': '1rem',      // 16px
-        'lg': '1.5rem',    // 24px
-        'xl': '2rem',      // 32px
-        '2xl': '3rem',     // 48px
+        xs: '0.5rem', // 8px
+        sm: '0.75rem', // 12px
+        md: '1rem', // 16px
+        lg: '1.5rem', // 24px
+        xl: '2rem', // 32px
+        '2xl': '3rem', // 48px
         // 작은 간격들
-        '1': '0.25rem',    // 4px
-        '2': '0.125rem',   // 2px
+        1: '0.25rem', // 4px
+        2: '0.125rem', // 2px
       },
       borderRadius: {
-        'xs': '0.5rem',    // 8px
-        'sm': '0.75rem',   // 12px
-        'md': '1rem',      // 16px
-        'lg': '1.5rem',    // 24px
-        'xl': '2rem',      // 32px
+        xs: '0.5rem', // 8px
+        sm: '0.75rem', // 12px
+        md: '1rem', // 16px
+        lg: '1.5rem', // 24px
+        xl: '2rem', // 32px
       },
       fontSize: {
-        'xs': '0.75rem',   // 12px
-        'sm': '0.875rem',  // 14px
-        'base': '1rem',    // 16px
-        'lg': '1.125rem',  // 18px
-        'xl': '1.25rem',   // 20px
+        xs: '0.75rem', // 12px
+        sm: '0.875rem', // 14px
+        base: '1rem', // 16px
+        lg: '1.125rem', // 18px
+        xl: '1.25rem', // 20px
       },
       aspectRatio: {
-        'book': '80/112',
+        book: '80/112',
       },
     },
   },

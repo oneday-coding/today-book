@@ -4,14 +4,13 @@ import BookList from './main/BookListIndex';
 
 
 export default function ListIndex() {
-  const { bookType } = useParams<{ bookType: string }>();
-  console.log(bookType);
+  const { bookType } = useParams<{ bookType: string | undefined }>();
 
   return (
     <>
-      <HeaderIndex bookType={bookType || '책 리스트'} />
-      <main className="flex-1 overflow-y-auto p-[16px]">
-        <BookList bookType={bookType || '책 리스트'} />
+      <HeaderIndex bookType={bookType} />
+      <main className="layout-main">
+        <BookList bookType={bookType} />
       </main>
     </>
   );
