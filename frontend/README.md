@@ -5,23 +5,28 @@
 ## 🚀 기술 스택
 
 ### Core
+
 - **React 19.1.0** - 사용자 인터페이스 라이브러리
 - **TypeScript 5.8.3** - 정적 타입 검사
 - **Vite 6.3.5** - 빌드 도구 및 개발 서버
 
 ### Routing & State Management
+
 - **React Router DOM 7.6.2** - 클라이언트 사이드 라우팅
 - **Zustand 5.0.5** - 상태 관리 라이브러리
 - **TanStack React Query 5.80.6** - 서버 상태 관리
 
 ### Styling & UI
+
 - **Tailwind CSS 3.4.17** - 유틸리티 우선 CSS 프레임워크
 - **Swiper 11.2.8** - 터치 슬라이더 라이브러리
 
 ### HTTP Client
+
 - **Axios 1.9.0** - HTTP 클라이언트
 
 ### Development Tools
+
 - **ESLint 9.28.0** - 코드 린팅
 - **Prettier 3.5.3** - 코드 포맷팅
 - **PostCSS 8.5.4** - CSS 전처리기
@@ -41,7 +46,7 @@ frontend/
 │   ├── components/        # 공통 컴포넌트
 │   │   ├── BackBtn.tsx
 │   │   ├── Logo.tsx
-│   │   └── moreBtn.tsx
+│   │   └── moreButton.tsx
 │   ├── hooks/             # 커스텀 훅
 │   │   ├── useBookDetail.ts
 │   │   └── useBookList.ts
@@ -75,34 +80,40 @@ frontend/
 ## 🛠️ 설치 및 실행
 
 ### Prerequisites
+
 - Node.js 18.0.0 이상
 - npm 또는 yarn
 
 ### 설치
+
 ```bash
 # 의존성 설치
 npm install
 ```
 
 ### 개발 서버 실행
+
 ```bash
 # 개발 모드로 실행 (http://localhost:5173)
 npm run dev
 ```
 
 ### 빌드
+
 ```bash
 # 프로덕션 빌드
 npm run build
 ```
 
 ### 빌드 미리보기
+
 ```bash
 # 빌드된 파일 미리보기
 npm run preview
 ```
 
 ### 코드 린팅
+
 ```bash
 # ESLint로 코드 검사
 npm run lint
@@ -111,32 +122,39 @@ npm run lint
 ## 🌐 주요 기능
 
 ### 페이지별 기능
+
 - **홈 페이지** (`/`)
+
   - 오늘의 추천 도서
   - 신간 도서 슬라이더
   - 베스트셀러 섹션
 
 - **검색 페이지** (`/search`)
+
   - 도서 검색 기능
   - 최근 검색 기록
   - 검색 결과 표시
 
 - **도서 상세 페이지** (`/detail/:isbn13`)
+
   - 도서 상세 정보
   - 리뷰 섹션
   - 즐겨찾기 기능
 
 - **도서 목록 페이지** (`/list/:bookType`)
+
   - 카테고리별 도서 목록
   - 페이지네이션
 
 - **즐겨찾기 페이지** (`/favorites`)
+
   - 즐겨찾기한 도서 목록
 
 - **마이 페이지** (`/my`)
   - 사용자 정보 관리
 
 ### 공통 기능
+
 - **하단 네비게이션**: 홈, 검색, 즐겨찾기, 마이페이지 간 이동
 - **반응형 디자인**: 모바일 우선 디자인
 - **상태 관리**: Zustand를 통한 전역 상태 관리
@@ -145,13 +163,16 @@ npm run lint
 ## 🎨 디자인 시스템
 
 ### 색상
+
 - **Main Blue**: `#4F46E5` (쨍한 파란색)
 - **Main Gray**: `#F3F4F6` (회색)
 
 ### 폰트
+
 - **Pacifico**: 로고 및 특별한 텍스트용
 
 ### 컴포넌트
+
 - **BottomNav**: 하단 네비게이션 바
 - **SearchWindow**: 검색 입력 창
 - **Swiper**: 이미지 슬라이더
@@ -160,6 +181,7 @@ npm run lint
 ## 🔧 환경 설정
 
 ### 환경 변수
+
 프로젝트 루트에 `.env` 파일을 생성하고 다음 변수를 설정하세요:
 
 ```env
@@ -167,9 +189,9 @@ VITE_API_URL=http://localhost:3000
 ```
 
 ### 백엔드 연동
+
 - 백엔드 서버는 `http://localhost:3000`에서 실행되어야 합니다
 - API 엔드포인트는 `/api` 프리픽스를 사용합니다
-
 
 ## 👥 팀
 

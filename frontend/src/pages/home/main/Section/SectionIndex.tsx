@@ -3,7 +3,7 @@
 import SectionList from './Best';
 import SectionSwiperToday from './SwiperToday';
 import SectionSwiperNew from './SwiperNew';
-import MoreButton from '../../../../components/MoreBtn';
+import MoreButton from '../../../../components/MoreButton';
 import { bookTypeMap, type BookType } from '../../../../models/bookType.model';
 
 interface propsHomeSection {
@@ -20,14 +20,10 @@ export default function HomeSection(props: propsHomeSection) {
   let SectionComponent;
   switch (listType) {
     case 1:
-      SectionComponent = (
-        <SectionSwiperToday LIMIT={LIMIT} swiperLeng={swiperLeng} />
-      );
+      SectionComponent = <SectionSwiperToday LIMIT={LIMIT} swiperLeng={swiperLeng} />;
       break;
     case 2:
-      SectionComponent = (
-        <SectionSwiperNew LIMIT={LIMIT} swiperLeng={swiperLeng} />
-      );
+      SectionComponent = <SectionSwiperNew LIMIT={LIMIT} swiperLeng={swiperLeng} />;
       break;
     case 3:
       SectionComponent = <SectionList LIMIT={LIMIT} />;
@@ -41,9 +37,7 @@ export default function HomeSection(props: propsHomeSection) {
     <section>
       <div className="pt-[32px] pb-[16px] flex justify-between items-center">
         <h2 className="section-title">{bookTypeMap[title as BookType] ?? title}</h2>
-        {moreBtnFlag && (
-          <MoreButton title={title} />
-        )}
+        {moreBtnFlag && <MoreButton title={title} />}
       </div>
 
       {SectionComponent}
