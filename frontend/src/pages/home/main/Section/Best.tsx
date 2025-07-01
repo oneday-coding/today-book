@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import useBookList from '../../../../hooks/useBookList';
+import Loading from '../../../../components/Loading';
 
 
 interface SectionListProps {
@@ -10,7 +11,7 @@ export default function SectionList({ LIMIT }: SectionListProps) {
   const navigate = useNavigate();
   const {bookData, error} = useBookList('best', 1, LIMIT);
   if (error) return <p>에러!</p>;
-  if (!bookData) return <p>로딩 중...</p>;
+  if (!bookData) return <Loading />;
 
   return (
     <div>
@@ -21,21 +22,23 @@ export default function SectionList({ LIMIT }: SectionListProps) {
               navigate(`/detail/${value.isbn13}`);
             }}
             key={index}
-            className={`${index !== 0 ? 'mt-[16px]' : ''} aspect-[3.298/1]`}
+            className={`${index !== 0 ? 'mt-md' : ''} aspect-[3.298/1]`}
           >
-            <div className="p-[12px] flex items-center gap-[12px] bg-[#F9FAFB]">
+            <div className="card-horizontal">
               <div
-                className={`${index === 0 ? 'bg-mainBlue' : 'bg-[#9CA3AF]'} text-white w-[32px] h-[32px] flex justify-center items-center rounded-full`}
+                className={`${index === 0 ? 'bg-mainBlue' : 'bg-textGray'} text-white w-8 h-8 flex justify-center items-center rounded-lg`}
               >
                 {index + 1}
               </div>
-              <div className="flex-1">
+              <div className="book-text">
                 <p className="book-title">{value.title}</p>
-                <p className="book-sub">
+                <p className="book-author">
                   {value.author} | {value.publisher}
                 </p>
               </div>
-              <img src={value.cover} alt={value.title} className="book-cover" />
+              <div className='book-container'>
+                <img className="book-cover" src={value.cover} alt={value.title} />
+              </div>
             </div>
           </div>
         );

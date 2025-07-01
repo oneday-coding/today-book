@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply font-['Roboto'] text-[12px] leading-[16px] text-[#374151];
+  html {
+    @apply font-['Roboto'] text-base leading-[1.3] text-textSecondary;
   }
 
   body {
@@ -17,25 +17,54 @@
   }
 
   h1 {
-    @apply text-[18px] text-[#1F2937];
+    @apply text-lg text-textPrimary;
   }
+
 }
 
 @layer components {
   .book-title {
-    @apply text-[14px] text-[#1F2937] mb-[4px];
+    @apply text-sm text-textPrimary mb-1 line-clamp-3 leading-[1.2];
   }
 
-  .book-sub {
-    @apply text-[12px] text-[#6B7280] font-light;
+  .book-author {
+    @apply text-xs text-textTertiary font-light line-clamp-2;
   }
 
-  .book-cover {
-    @apply rounded-[12px] block bg-white;
+  .book-description {
+    @apply text-xs text-textPrimary line-clamp-3;
+  }
+
+  .book-container {
+    @apply aspect-book;
+  }
+  
+  .book-container .book-cover {
+    @apply rounded-xs block bg-white object-cover w-full h-full;
+  }
+
+  .card-horizontal {
+    @apply aspect-[343/138] p-sm flex items-center gap-sm bg-cardBg rounded-md;
+  }
+
+  .card-horizontal .book-container {
+    @apply w-[calc(80/311*100%)] h-full flex-shrink-0;
+  }
+
+  .card-horizontal .book-title {
+    @apply text-base line-clamp-1;
+  }
+  
+  .card-horizontal .book-author {
+    @apply line-clamp-1;
+  }
+
+  .card-horizontal .book-text {
+    @apply flex-1 h-full flex flex-col justify-center;
   }
 
   .section-title {
-    @apply text-[18px] text-[#1F2937];
+    @apply text-lg text-textPrimary;
   }
 
   .bg-100 {
@@ -43,6 +72,6 @@
   }
 
   .page-title {
-    @apply flex-1 text-center text-[18px] text-[#1F2937];
+    @apply flex-1 text-center text-lg text-textPrimary;
   }
 }

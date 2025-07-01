@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useNavigate } from 'react-router-dom';
 import useBookList from '../../../../hooks/useBookList';
+import Loading from '../../../../components/Loading';
 
 interface SectionSwiperProps {
   LIMIT: number;
@@ -12,7 +13,7 @@ export default function SectionSwiper({ LIMIT, swiperLeng }: SectionSwiperProps)
   const navigate = useNavigate();
   const {bookData, error} = useBookList('new', 1, LIMIT);
   if (error) return <p>에러!</p>;
-  if (!bookData) return <p>로딩 중...</p>;
+  if (!bookData) return <Loading />;
 
   return (
     <Swiper spaceBetween={12} slidesPerView={swiperLeng}>
@@ -24,16 +25,18 @@ export default function SectionSwiper({ LIMIT, swiperLeng }: SectionSwiperProps)
             }}
             key={index}
           >
-            <img
-              src={value.cover}
-              alt={value.title}
-              className="block w-full aspect-[0.75/1] rounded-[12px]"
-            />
-            <div className="mt-[8px]">
-              <p className="book-title" style={{ fontSize: '12px' }}>
+            <div className='book-container'>
+              <img
+                src={value.cover}
+                alt={value.title}
+                className="book-cover w-full"
+                />
+            </div>
+            <div className="mt-2">
+              <p className="book-title">
                 {value.title}
               </p>
-              <p className="book-sub">{value.author}</p>
+              <p className="book-author">{value.author}</p>
             </div>
           </SwiperSlide>
         );

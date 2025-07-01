@@ -11,10 +11,6 @@ export default function Layout() {
 
   return (
     <div className="flex flex-col h-screen">
-      {/* <main className="flex-1 overflow-y-auto">
-        <Outlet />
-      </main> */}
-
       <Outlet />
       <BottomNav />
     </div>

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useSearchStore } from '../../store/searchStore';
+import { useRecentSearchStore } from '../../store/recentSearchStore';
 import HeaderIndex from './header/HeaderIndex';
 import MainIndex from './main/MainIndex';
 
 export default function SearchIndex() {
-  const loadFromStorage = useSearchStore((state) => state.loadFromStorage);
+  const loadFromStorage = useRecentSearchStore((state) => state.loadFromStorage);
 
   useEffect(() => {
     loadFromStorage();

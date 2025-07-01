@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomeIndex /> },
       { path: 'detail/:isbn13', element: <DetailIndex /> },
-      { path: 'list/:subject', element: <ListIndex /> },
+      { path: 'list/:bookType', element: <ListIndex /> },
       { path: 'search', element: <SearchIndex /> },
       { path: 'favorites', element: <FavoritesIndex /> },
       { path: 'my', element: <MyIndex /> },

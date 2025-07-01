@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function SearchHome() {
+export default function SearchWindowHome() {
   const navigate = useNavigate();
 
   return (

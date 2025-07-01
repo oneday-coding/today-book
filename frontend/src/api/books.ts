@@ -22,3 +22,15 @@ export async function getBookDetail(isbn13: number) {
     throw err;
   }
 }
+
+// 책 '검색' GET
+export async function getBookSearch(keyword: string, page: number, limit: number) {
+  try {
+    const res = await axios.get(`/api/books/search?keyword=${keyword}&page=${page}&limit=${limit}`);
+    return res.data.item;
+  }
+  catch (err) {
+    console.error('책 검색 GET 요청 실패 : ', err);
+    throw err;
+  }
+}
