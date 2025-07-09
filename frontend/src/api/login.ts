@@ -1,12 +1,9 @@
-import axios from "../lib/axios";
+import axios from '../lib/axios';
 
-export async function getMyInfo() {
-  const response = await axios.get('/api/auth/me');
-  return response.data.item;
-}
-
-export function getUserInfo() {
-  return axios.get('/api/auth/kakao/user');
+export async function getUserInfo() {
+  const response = await axios.get('/api/users/me');
+  console.log('response: ', response);
+  return response.data;
 }
 
 export function logout() {}

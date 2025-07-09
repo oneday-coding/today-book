@@ -4,12 +4,12 @@ interface LogoProps {
   fontSize?: string;
 }
 
-export default function Logo({fontSize = '20px'}: LogoProps) {
+export default function Logo({ fontSize = '20px' }: LogoProps) {
   const navigate = useNavigate();
 
   return (
     <a
-      className={`inline-block font-pacifico`}
+      className="inline-block font-pacifico text-mainBlue"
       style={{ fontSize: fontSize }}
       onClick={() => {
         navigate('/');

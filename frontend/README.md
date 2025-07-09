@@ -47,7 +47,7 @@ frontend/
 │   │   ├── BackBtn.tsx
 │   │   ├── Logo.tsx
 │   │   └── moreButton.tsx
-│   ├── hooks/             # 커스텀 훅
+│   ├── hooks/             # 커스텀 훅 (React Query 훅)
 │   │   ├── useBookDetail.ts
 │   │   └── useBookList.ts
 │   ├── layout/            # 레이아웃 컴포넌트

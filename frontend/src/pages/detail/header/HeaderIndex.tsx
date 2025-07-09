@@ -1,15 +1,15 @@
+import { useParams } from 'react-router-dom';
 import BackButton from '../../../components/BackBtn';
+import ButtonLike from './ButtonLike';
 
 export default function HeaderIndex() {
+  const { isbn13 } = useParams();
+
   return (
     <header className="layout-header">
       <BackButton />
       <h1 className="flex-1 flex justify-center">도서 상세</h1>
-      <button
-        type="button"
-        className="bg-100 w-[32px] h-[32px] shrink-0"
-        style={{ backgroundImage: "url('/icons/button/share.svg')" }}
-      ></button>
+      <ButtonLike isbn13={Number(isbn13)} />
     </header>
   );
 }

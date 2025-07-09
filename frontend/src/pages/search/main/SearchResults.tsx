@@ -1,10 +1,11 @@
-import type { InfiniteData } from '@tanstack/react-query';
+import { useQueryClient, type InfiniteData } from '@tanstack/react-query';
 import Loading from '../../../components/Loading';
 import NoMoreBooks from '../../../components/NoMoreBooks';
 import useBookSearch from '../../../hooks/useBookSearch';
 import type { Book } from '../../../models/book.model';
 import InfiniteBookList from './InfiniteBooklist';
 import { useResultSearchStore } from '../../../store/useResultSearchStore';
+import { useEffect } from 'react';
 
 export default function SearchResults() {
   const searchQuery = useResultSearchStore((state) => state.searchQuery);
@@ -12,6 +13,19 @@ export default function SearchResults() {
     useBookSearch(searchQuery, 10);
 
   const allBooks = (data as InfiniteData<Book[]>)?.pages?.flat() ?? [];
+
+  // 키워드가 바뀔 때 이전 검색 결과(캐시) 제거
+  // 제거하지 않을 시 => 이전 검색 결과(결과 목록, 페이지)가 남아있어, 이미 검색했던 키워드를 다시 검색했을 때 => 페이지가 쌓인 결과가 보임
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    return () => {
+      // cleanup function => 컴포넌트가 언마운트 될 때 또는 의존성배열 변경 직전에 실행
+      queryClient.removeQueries({
+        queryKey: ['search', searchQuery],
+        exact: true,
+      });
+    };
+  }, [searchQuery]);
 
   if (!searchQuery) {
     return (

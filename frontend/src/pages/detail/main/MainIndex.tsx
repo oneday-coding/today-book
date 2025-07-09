@@ -1,11 +1,11 @@
-import SectionInfo from './SectionInfo';
-import SectionReview from './SectionReview';
+import SectionInfo from './info/SectionInfo';
+import ReviewIndex from './review/ReviewIndex';
 
 export default function MainIndex() {
   return (
     <main className="layout-main">
       <SectionInfo />
-      <SectionReview />
+      <ReviewIndex />
     </main>
   );
 }

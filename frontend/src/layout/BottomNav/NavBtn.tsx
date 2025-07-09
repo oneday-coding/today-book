@@ -7,7 +7,7 @@ interface NavBtnProps {
 const navConfig: Record<string, { label: string; iconUrl: string }> = {
   '/': { label: '홈', iconUrl: '/icons/nav/home/' },
   '/search': { label: '검색', iconUrl: '/icons/nav/search/' },
-  '/favorites': { label: '찜', iconUrl: '/icons/nav/favorite/' },
+  '/likes': { label: '찜', iconUrl: '/icons/nav/likes/' },
   '/my': { label: '내 정보', iconUrl: '/icons/nav/my/' },
 };
 
