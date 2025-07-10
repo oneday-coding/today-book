@@ -11,19 +11,19 @@ const instance = axios.create({
 
 // 응답 인터셉터
 // Axios의 응답에 대해 모든 응답을 가로채서 처리할 수 있는 기능.
-instance.interceptors.response.use(
-  (response) => response, // 성공한 응답은 그대로 리턴.
-  (error) => {
-    // 에러가 발생한 응답을 처리.
-    const originalRequest = error.config;
+// instance.interceptors.response.use(
+//   (response) => response, // 성공한 응답은 그대로 리턴.
+//   (error) => {
+//     // 에러가 발생한 응답을 처리.
+//     const originalRequest = error.config;
 
-    // 401 에러 && 요청 URL이 /login이 아닐 경우만 리다이랙트
-    if (error.response?.status === 401 && !originalRequest.url.include('/login')) {
-      window.location.href = '/login';
-    }
-    return Promise.reject(error);
-    // 리다이렉트 외에도, 에러는 다시 Promise로 throw해서 해당 요청을 보낸 컴포넌트에서 .catch() 등으로도 에러 처리를 할 수 있도록 함.
-  }
-);
+//     // 401 에러 && 요청 URL이 /login이 아닐 경우만 리다이랙트
+//     if (error.response?.status === 401 && !originalRequest.url.includes('/login')) {
+//       window.location.href = '/login';
+//     }
+//     return Promise.reject(error);
+//     // 리다이렉트 외에도, 에러는 다시 Promise로 throw해서 해당 요청을 보낸 컴포넌트에서 .catch() 등으로도 에러 처리를 할 수 있도록 함.
+//   }
+// );
 
 export default instance;

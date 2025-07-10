@@ -1,9 +1,20 @@
 import { useRecentSearchStore } from '../../../store/useRecentSearchStore';
 import useBookSearch from '../../../hooks/useBookSearch_old';
+import { useResultSearchStore } from '../../../store/useResultSearchStore';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function SearchResults() {
   const { recentSearches, clearAllStorage, removeOneStorage } = useRecentSearchStore();
   const { searchBooks } = useBookSearch();
+
+  const clearResults = useResultSearchStore((state) => state.clearResults);
+  const searchQuery = useResultSearchStore((state) => state.searchQuery);
+  const queryClient = useQueryClient();
+  // 검색 결과 초기화
+  function resetResults() {
+    clearResults(); // 전역 검색어 초기화
+    queryClient.invalidateQueries({ queryKey: ['search', searchQuery] }); // 캐시 초기화
+  }
 
   return (
     <div>
@@ -13,6 +24,7 @@ export default function SearchResults() {
           type="button"
           onClick={() => {
             clearAllStorage();
+            resetResults();
           }}
         >
           전체 삭제

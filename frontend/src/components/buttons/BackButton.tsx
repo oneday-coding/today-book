@@ -8,9 +8,7 @@ export default function BackButton() {
       type="button"
       className="w-[32px] h-[32px]"
       style={{ backgroundImage: "url('/icons/button/arrow_black.svg')" }}
-      onClick={() => {
-        navigate(-1);
-      }}
+      onClick={() => navigate(-1)}
     ></button>
   );
 }

@@ -28,6 +28,10 @@ export const useResultSearchStore = create<ResultSearchStore>((set) => ({
   setPage: (page) => set({ page }),
   setHasMore: (hasMore) => set({ hasMore }),
   setLoading: (isLoading) => set({ isLoading }),
-  setSearchQuery: (query) => set({ searchQuery: query, page: 1, hasMore: true }),
+  setSearchQuery: (query) =>
+    set((state) => {
+      if (state.searchQuery === query) return state;
+      return { searchQuery: query, page: 1, hasMore: true };
+    }),
   clearResults: () => set({ searchResults: [], searchQuery: '', page: 1, hasMore: true }),
 }));

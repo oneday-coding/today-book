@@ -1,9 +1,7 @@
-// import axios from 'axios';
-// import { useEffect } from 'react';
 import SectionList from './Best';
 import SectionSwiperToday from './SwiperToday';
 import SectionSwiperNew from './SwiperNew';
-import MoreButton from '../../../../components/MoreButton';
+import MoreButton from '../../../../components/buttons/MoreButton';
 import { bookTypeMap, type BookType } from '../../../../models/bookType.model';
 
 interface propsHomeSection {

@@ -1,11 +1,12 @@
+import Main from '../../../layout/Main';
 import RecentSearchRecords from './RecentSearchRecords';
 import SearchResults from './SearchResults';
 
 export default function MainIndex() {
   return (
-    <main className="layout-main">
+    <Main>
       <RecentSearchRecords />
       <SearchResults />
-    </main>
+    </Main>
   );
 }

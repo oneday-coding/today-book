@@ -5,7 +5,7 @@ import { getLikes, postLikes, deleteLikes } from '../api/likes';
 // 찜 목록 조회
 export const useGetLikes = () => {
   return useQuery({
-    queryKey: ['likes'],
+    queryKey: ['likes', 'me'],
     queryFn: () => getLikes(),
     staleTime: 1000 * 60,
     retry: false, // 실패 시 자동 재시도 안 함

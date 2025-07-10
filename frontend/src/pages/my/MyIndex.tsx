@@ -1,10 +1,12 @@
-import MyHeader from "./header/MyHeader";
+import Header from "../../layout/Header";
 import MyMain from "./main/MyMain";
 
 export default function MyIndex() {
   return (
     <>
-      <MyHeader />
+      <Header>
+        <h1 className="page-title">내 정보</h1>
+      </Header>
       <MyMain />
     </>
   );

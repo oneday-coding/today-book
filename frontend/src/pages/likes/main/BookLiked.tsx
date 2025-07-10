@@ -7,11 +7,12 @@ export default function BookLiked({ bookData }: { bookData: Book }) {
   const navigate = useNavigate();
 
   function goDetail() {
-    navigate(`/book/${isbn13}`);
+    navigate(`/detail/${isbn13}`);
   }
 
   return (
     <div
+      key={bookData.isbn13}
       className="relative shadow-sm bg-white rounded-md"
       onClick={(e) => {
         e.stopPropagation();

@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useRecentSearchStore } from '../../store/useRecentSearchStore';
-import HeaderIndex from './header/HeaderIndex';
 import MainIndex from './main/MainIndex';
+import BackButton from '../../components/buttons/BackButton';
+import Header from '../../layout/Header';
+import SearchWindow from './headerChildren/SearchWindow';
 
 export default function SearchIndex() {
   const loadFromStorage = useRecentSearchStore((state) => state.loadFromStorage);
@@ -12,7 +14,10 @@ export default function SearchIndex() {
 
   return (
     <>
-      <HeaderIndex />
+      <Header>
+        <BackButton />
+        <SearchWindow />
+      </Header>
       <MainIndex />
     </>
   );

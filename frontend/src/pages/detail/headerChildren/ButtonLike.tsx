@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import useUserQuery from '../../../hooks/useUserQuery';
 import { usePostLikes, useDeleteLikes } from '../../../hooks/useLikes';
-import LoginRequireModal from '../../../components/LoginRequireModal';
+import LoginRequireModal from '../../../components/modals/LoginRequireModal';
 import useBookDetail from '../../../hooks/useBookDetail';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface ButtonLikeProps {
   isbn13: number;
@@ -10,43 +11,32 @@ interface ButtonLikeProps {
 
 export default function ButtonLike({ isbn13 }: ButtonLikeProps) {
   const [showLoginModal, setShowLoginModal] = useState(false);
-
-  // 로그인 상태 확인
   const { data: userInfo, isError: userError } = useUserQuery();
-
-  // 좋아요 상태 확인
   const { data: bookData, isError: bookError } = useBookDetail(Number(isbn13));
-  const isLiked = bookData?.isLiked;
-
-  // 좋아요 추가/삭제 뮤테이션
-  const { mutate: postLike } = usePostLikes();
-  const { mutate: deleteLike } = useDeleteLikes();
+  const queryClient = useQueryClient();
+  const { mutate: postLike, isPending: isPostingLike } = usePostLikes();
+  const { mutate: deleteLike, isPending: isDeletingLike } = useDeleteLikes();
 
   function toggleLikes() {
-    // 로그인하지 않은 경우 또는 로그인 실패한 경우 로그인 모달 표시
     if (!userInfo || userError) {
       setShowLoginModal(true);
       return;
     }
-
-    // 로그인된 경우 좋아요 토글
-    if (isLiked) {
-      // 이미 좋아요가 되어있으면 삭제
+    if (bookData?.isLiked) {
       deleteLike(isbn13, {
         onSuccess: () => {
-          console.log('좋아요 삭제 성공');
+          queryClient.invalidateQueries({ queryKey: ['books', Number(isbn13)] });
         },
         onError: () => {
           console.log('좋아요 삭제 실패');
         },
       });
     } else {
-      // 좋아요가 안되어있으면 추가
       postLike(
         { isbn13 },
         {
           onSuccess: () => {
-            console.log('좋아요 추가 성공');
+            queryClient.invalidateQueries({ queryKey: ['books', Number(isbn13)] });
           },
           onError: () => {
             console.log('좋아요 추가 실패');
@@ -63,18 +53,18 @@ export default function ButtonLike({ isbn13 }: ButtonLikeProps) {
     <>
       <button
         type="button"
-        className="bg-100 w-[32px] h-[32px] shrink-0"
+        className="bg-100 w-[32px] h-[32px] shrink-0 ml-auto"
         style={{
           backgroundImage:
-            shouldShowLoginModal || !isLiked
+            shouldShowLoginModal || !bookData?.isLiked
               ? "url('/icons/button/heart.svg')"
               : "url('/icons/button/heart_filled.svg')",
         }}
         onClick={toggleLikes}
+        disabled={isPostingLike || isDeletingLike}
       >
         <span className="sr-only">찜 버튼</span>
       </button>
-
       {showLoginModal && <LoginRequireModal onCancel={() => setShowLoginModal(false)} />}
     </>
   );

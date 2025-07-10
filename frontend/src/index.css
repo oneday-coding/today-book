@@ -12,8 +12,8 @@
   }
 
   input,
-  button {
-    @apply bg-transparent;
+  textarea {
+    @apply bg-transparent text-[16px];
   }
 
   h1 {
@@ -28,12 +28,20 @@
 }
 
 @layer components {
+  .layout {
+    @apply flex flex-col h-[100dvh] max-w-[400px] mx-auto absolute top-0 bottom-0 left-0 right-0 border-x-[1px] border-mainGray;
+  }
+
   .layout-header {
-    @apply shrink-0 py-[12px] px-[16px] h-[64px] shadow-sm flex items-center gap-[8px];
+    @apply z-10 bg-white absolute top-0 left-0 w-full shrink-0 py-[12px] px-[16px] h-[64px] shadow-sm flex items-center gap-[8px];
   }
 
   .layout-main {
-    @apply flex-1 overflow-y-auto p-[16px] pb-[32px];
+    @apply absolute top-[64px] left-0 right-0 bottom-0 w-full flex-1 overflow-y-auto p-[16px] pb-[95px];
+  }
+
+  .layout-bottomNav {
+    @apply z-10 bg-white absolute bottom-0 left-0 w-full flex justify-center items-center p-[8px] h-[62px] shadow-sm border-t border-gray-200;
   }
 
   .layout-header-left {
@@ -88,6 +96,10 @@
   }
 
   .page-title {
-    @apply flex-1 text-center text-lg text-textPrimary;
+    @apply absolute left-1/2 -translate-x-1/2 flex-1 text-center text-lg text-textPrimary;
+  }
+
+  .error-message {
+    @apply text-textGray text-sm;
   }
 }

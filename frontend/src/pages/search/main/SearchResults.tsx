@@ -9,23 +9,17 @@ import { useEffect } from 'react';
 
 export default function SearchResults() {
   const searchQuery = useResultSearchStore((state) => state.searchQuery);
+  const clearResults = useResultSearchStore((state) => state.clearResults);
   const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useBookSearch(searchQuery, 10);
 
   const allBooks = (data as InfiniteData<Book[]>)?.pages?.flat() ?? [];
 
-  // 키워드가 바뀔 때 이전 검색 결과(캐시) 제거
-  // 제거하지 않을 시 => 이전 검색 결과(결과 목록, 페이지)가 남아있어, 이미 검색했던 키워드를 다시 검색했을 때 => 페이지가 쌓인 결과가 보임
   const queryClient = useQueryClient();
   useEffect(() => {
-    return () => {
-      // cleanup function => 컴포넌트가 언마운트 될 때 또는 의존성배열 변경 직전에 실행
-      queryClient.removeQueries({
-        queryKey: ['search', searchQuery],
-        exact: true,
-      });
-    };
-  }, [searchQuery]);
+    clearResults(); // 검색어 state 초기화
+    queryClient.removeQueries({ queryKey: ['search'] }); // 캐시 초기화
+  }, []);
 
   if (!searchQuery) {
     return (
@@ -34,10 +28,8 @@ export default function SearchResults() {
       </div>
     );
   }
-
   if (isLoading) return <Loading />;
   if (isError) return <div>에러가 발생하였습니다.</div>;
-
   if (!isLoading && allBooks.length === 0) {
     return (
       <div className="text-center py-8">
@@ -49,9 +41,21 @@ export default function SearchResults() {
 
   return (
     <div>
-      <h2 className="section-title mb-4">
-        {searchQuery} 검색 결과 ({allBooks.length}건)
-      </h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="section-title">
+          <span className="text-mainBlue">{searchQuery}</span> 검색 결과 ({allBooks.length}건)
+        </h2>
+        <button
+          className="pr-[20px]"
+          style={{
+            background: 'right center/20px no-repeat',
+            backgroundImage: `url('/icons/button/reset.svg')`,
+          }}
+          onClick={() => clearResults()}
+        >
+          초기화
+        </button>
+      </div>
       <InfiniteBookList
         books={allBooks}
         fetchNextPage={fetchNextPage}

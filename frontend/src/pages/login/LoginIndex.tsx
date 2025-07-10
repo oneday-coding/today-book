@@ -1,4 +1,4 @@
-import Logo from '../../components/Logo';
+import Logo from '../../components/buttons/Logo';
 
 export default function Login() {
   const loginUrl = import.meta.env.VITE_API_URL + '/api/auth/kakao';
